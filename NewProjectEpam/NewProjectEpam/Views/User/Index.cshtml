@@ -1,0 +1,26 @@
+﻿@model IEnumerable<NewProjectEpam.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Список пользователей";
+}
+
+<h2>Список пользователей</h2>
+<table>
+    <tr>
+        <th>
+         @Html.DisplayNameFor(model => model.Email)
+        </th>
+    
+        {
+           
+           
+            {
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit") |
+                    @Html.ActionLink("Удалить", "Delete")
+                 
+                </td>
+            }
+        </tr>
+    }
+</table>

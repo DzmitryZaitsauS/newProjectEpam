@@ -8,11 +8,13 @@ namespace NewProjectEpam.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+public ActionResult Index()
         {
             return View();
         }
 
+
+        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -20,9 +22,18 @@ namespace NewProjectEpam.Controllers
             return View();
         }
 
+        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+
+        [Authorize(Users = "dmitry_zajcew@mail.ru")]
+        public ActionResult Admin()
+        {
+            ViewBag.Message = "Your Admin page.";
 
             return View();
         }
