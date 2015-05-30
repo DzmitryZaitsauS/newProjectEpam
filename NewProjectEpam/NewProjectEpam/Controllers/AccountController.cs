@@ -66,9 +66,11 @@ namespace NewProjectEpam.Controllers
             if (ModelState.IsValid)
             {
                 ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+               IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+               //await UserManager.AddToRoleAsync(user.Id, "Пользователь");
                 if (result.Succeeded)
                 {
+                    
                     ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user,
                                            DefaultAuthenticationTypes.ApplicationCookie);
                  
@@ -76,6 +78,7 @@ namespace NewProjectEpam.Controllers
                     {
                         IsPersistent = true
                     }, claim);
+                    
                     return RedirectToAction("Index", "Home");
 
                 }

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<NewProjectEpam.Models.myTable.MyTableNews>
+
+@{
+    ViewBag.Title = "AddNews";
+}
+
+<h2>Добавление новости</h2>
+
+@using (Html.BeginForm("AddMyNews", "AddNews"))
+{
+
+    
+    <div>
+
+        Название новости  - @Html.TextBox("name_news", "")
+
+       
+
+            Категория -  @Html.TextBox("typess", "")
+            
+        
+
+        Содержание  - @Html.TextArea("content", "")
+
+        Url-адресс изображения  - @Html.TextBox("img", "")
+
+        <input type="submit" value="Добавить"  />
+
+    </div>
+
+}
+

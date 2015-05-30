@@ -8,8 +8,11 @@ namespace NewProjectEpam.Models
 {
     public class ApplicationRole : IdentityRole
     {
-        public ApplicationRole() { }
+        public ApplicationRole() {  }
+      
+
 
         public string Description { get; set; }
+      
     }
 }

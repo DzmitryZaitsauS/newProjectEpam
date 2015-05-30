@@ -5,22 +5,62 @@
 }
 
 <h2>Список пользователей</h2>
+
 <table>
     <tr>
         <th>
-         @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.Email)
         </th>
-    
-        {
-           
-           
-            {
+       
+        
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model)
+            </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Position)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartmentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoleId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+          
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Roles.Name)
+            </td>*@
+          
                 <td>
                     @Html.ActionLink("Редактировать", "Edit") |
                     @Html.ActionLink("Удалить", "Delete")
-                 
                 </td>
-            }
+            
         </tr>
     }
 </table>

@@ -1,0 +1,106 @@
+﻿@model IEnumerable<NewProjectEpam.Models.myTable.TableZakazNews>
+@{
+    ViewBag.Title = "ZakazNews";
+}
+
+<h2>Заказ новостей</h2>
+
+@using (Html.BeginForm("AddZakazNews", "ZakazNews"))
+{
+
+    <div>Предложить новость:</div>
+    <div>
+       
+       Название новости которую вы бы хотели видеть - @Html.TextBox("name_news", "Новости о ...")
+        <input type="submit" value="Предложить" />
+    </div>
+
+}
+
+
+
+<table border="1">
+    <tr>
+        <td colspan="6" align="center">Предложенные новости</td>
+
+        
+    </tr>
+
+    <tr>
+       
+       
+        <td>Имя пользователя</td>
+        <td>E-mail пользователя</td>
+        <td>Название </td>
+        <td> Дата заказа</td>
+        <td> Отрицательных оценок</td>
+        <td> Положительных оценок</td>
+        <td>Номер заказа</td>
+        </tr>
+    @foreach (var item in Model)
+    {
+      
+        <tr>
+            
+            
+          <td>
+
+              @item.user_name
+              </td>
+
+            <td>
+                @item.email
+            </td>
+            <td>
+                @item.name_news
+            </td>
+            <td>
+                                @item.date_zakaz
+            </td>
+            <td>
+                @item.otr_ozaenk
+               @using (@Html.BeginForm("OtrOcZakaz", "ZakazNews"))
+{
+    <div>
+        @Html.TextBox("id_zakaz", @item.Id_zakaz)
+        <input type="submit" value="-" />
+    </div>
+}
+            </td>
+            <td>
+                @item.pol_ozenk
+                @using (@Html.BeginForm("PolOzZakaz", "ZakazNews"))
+                {
+                    <div>
+                        @Html.TextBox("id_zakaz", @item.Id_zakaz)
+                        <input type="submit" value="+" class="polo_ocenka"  />
+                    </div>
+                }
+
+            </td>
+            <td>
+
+                @using (Html.BeginForm("DeleteZakaz", "ZakazNews"))
+                {
+
+
+                    <div>
+                        @Html.TextBox("id_zakaz", @item.Id_zakaz)
+                        <input type="submit" value="Удалить" />
+                    </div>
+
+                }
+            </td>
+          
+            
+              
+
+              
+
+        </tr>
+    }
+    </table>
+
+
+
+

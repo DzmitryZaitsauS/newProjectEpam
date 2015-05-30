@@ -22,11 +22,12 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Поаулярные новости", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Добавить новость", "About", "Home")</li>
-                    <li>@Html.ActionLink("Заказать новость", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Добавить новость", "AddNews", "AddNews")</li>
+                    <li>@Html.ActionLink("Заказать новость", "ZakazNews", "ZakazNews")</li>
 
                 </ul>
                 @Html.Partial("_LoginPartial")
+               
             </div>
         </div>
     </div>
@@ -34,7 +35,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year</p>
         </footer>
     </div>
 

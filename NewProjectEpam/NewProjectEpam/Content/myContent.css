@@ -1,0 +1,23 @@
+﻿body {
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+
+    background-color: silver;
+}
+
+img {
+    align-content: flex-start;
+    
+}
+
+texarea {
+   min-height: 400px;
+   min-width: 600px;
+}
+
+.polo_ocenka {
+    background-image:url("~/fonts/like.img");
+}
+

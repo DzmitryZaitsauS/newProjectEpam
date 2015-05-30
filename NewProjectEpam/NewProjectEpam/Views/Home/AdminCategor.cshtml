@@ -1,0 +1,51 @@
+﻿@model IEnumerable<NewProjectEpam.Models.myTable.TableCategories>
+@{
+    ViewBag.Title = "AdminCategor";
+}
+
+
+
+<h2>Управление категориями</h2>
+@using (Html.BeginForm("AddCategories","Home"))
+{
+
+    <div>Название новой категории:</div>
+    <div>
+        @Html.TextBox("typess", "Новости...")
+        <input type="submit" value="Добавить" />
+    </div>
+
+}
+<table>
+    <tr>
+        <td>Название категоррии новостей</td>
+
+    </tr>
+
+            @foreach (var item in Model)
+            { 
+            <tr>
+             
+
+               @using (Html.BeginForm("DeleteCategories", "Home"))
+{
+
+<td>
+    <div>
+    
+        @Html.TextBox("typess", @item.Typess)
+                <input type="submit" value="Удалить" />
+    </div>
+    </td>
+
+}
+             
+                </tr>
+            }
+
+        
+    
+
+
+    </table>
+

@@ -18,15 +18,15 @@ namespace NewProjectEpam.Models
 
             // создаем две роли
             var role1 = new IdentityRole { Name = "admin" };
-            var role2 = new IdentityRole { Name = "user" };
+            var role2 = new IdentityRole { Name = "Пользователь" };
 
             // добавляем роли в бд
             roleManager.Create(role1);
             roleManager.Create(role2);
 
             // создаем пользователей
-            var admin = new ApplicationUser { Email = "admin@mail.ru" };
-            string password = "admin";
+            var admin = new ApplicationUser { Email = "admin@mail.ru", UserName = "admin" };
+            string password = "admin1";
             var result = userManager.Create(admin, password);
 
             // если создание пользователя прошло успешно

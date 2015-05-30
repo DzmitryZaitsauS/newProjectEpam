@@ -1,0 +1,38 @@
+﻿@model IEnumerable<NewProjectEpam.Models.myTable.MyTableNews>
+@{
+    ViewBag.Title = "UpdateNews";
+}
+
+<h2>Редактирование новости</h2>
+
+
+@using (Html.BeginForm("SaveNews", "Home"))
+                {
+  
+    foreach (var item in Model)
+    {
+     <div>   
+                Название новости @Html.TextBox("name_news", @item.name_news)
+                  Категория @Html.TextBox("typess", @item.typess)
+
+           
+               @Html.TextArea("content", @item.content)
+      
+               @Html.TextBox("img", @item.image)
+         @Html.TextBox("id_news", @item.Id_news)
+         <input type="submit" value="Сохранить" />
+      </div>
+
+
+     
+                   
+                   
+                    
+                }
+          
+
+}
+
+
+
+
