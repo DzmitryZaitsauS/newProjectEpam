@@ -1,136 +1,120 @@
 ﻿@model IEnumerable<NewProjectEpam.Models.myTable.MyTableNews>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Главная";
 }
 
-<div class="jumbotron">
-    <h1>Главная - ASP.NET MVC</h1>
-
-</div>
-
-<table border="1">
-    <tr>
-        <td colspan="6" align="center">Новости</td>
 
 
-    </tr>
-@foreach (var item in Model)
-{
-    <tr>
+<table  class="table table-hover">
 
-        <td>Название новости  @item.name_news  Добавил @item.user_nam Категория  @item.typess
-    
+    @foreach (var item in Model)
+    {
+      //  @if (Math.Abs(@item.pol_ozenk)<Math.Abs(@item.otr_ozaenk)) { Style.Backgrounfcolor=silver} else {inp.disabled=true; inp.style.backgroundColor='#EFEFEF'} 
+        <tr >
 
+            <td colspan="2">
+              
+            </td>
+
+        </tr>
+
+
+        <tr id="inp">
+
+            <td>
+                <strong class="Mystrong"> @item.name_news  |  Категория:  @item.typess |  Добавил: @item.user_nam </strong>
+
+                <div class="news_del_update" align="right">
                 @using (Html.BeginForm("DeleteMyNews", "Home"))
                 {
 
-                             @Html.TextBox("id_news",@item.Id_news)         
-                        <input type="submit" value="Удалить" />
-                    
+                    @Html.TextBox("id_news", @item.Id_news, htmlAttributes: new { @class = "visible_false" })
+                    <input type="image" src="/fonts/delete.png" class="delete_zakaz_news" title="Удалить новость">
+
 
                 }
 
-            @using (Html.BeginForm("UpdateNews", "Home"))
-            {
+                @using (Html.BeginForm("UpdateNews", "Home"))
+                {
 
-                @Html.TextBox("id_news", @item.Id_news)
-                <input type="submit" value="Редактировать" />
+                    @Html.TextBox("id_news", @item.Id_news, htmlAttributes: new { @class = "visible_false" })
+                    <input type="image" src="/fonts/update.jpg" class="update_news" title="Редактировать новость">
 
 
-            }
-                </td>
+                }
+                </div>
+                <div align="center">
+                <img id="img_content" src="@item.image" title="Картинка" align="middle" alt="Тут должна быть картинка">
+                    </div>
+                <br>
+                <h5> @item.content </h5>
+               <div align="right">
+                 @using (@Html.BeginForm("PolOcNews", "Home"))
+                {
+                    
+                        @Html.TextBox("id_news", @item.Id_news, htmlAttributes: new { @class = "visible_false" })
+                        <input type="image" src="/fonts/like.jpg" class="polo_ocenka" title="Поставить положительную оценку новости">@item.pol_ozenk
+                   
+                }
 
-    </tr>
-    
-      <tr>
 
-          
+                @using (@Html.BeginForm("OtrOcNews", "Home"))
+                {
+                    
+                        @Html.TextBox("id_news", @item.Id_news, htmlAttributes: new { @class = "visible_false" })
+                        <input type="image" src="/fonts/dislike.jpg" class="otr_ocenka" title="Поставить отрицательную оценку новости">@item.otr_ozaenk
+                    
+                }
+</div>
+                <hr>
+                <blockquote> @item.comment</blockquote><br>
+                Дата коментария - @item.date_comment  Оставил - @item.users_comment <br>
+               
+
+                @using (@Html.BeginForm("PolOcComment", "Home"))
+                {
+                    <div>
+                        @Html.TextBox("id_comment", @item.id_comments, htmlAttributes: new { @class = "visible_false" })
+                        <input type="image" src="/fonts/like.jpg" class="polo_ocenka" title="Поставить положительную оценку коментарию">@item.pol_oc
+                    </div>
+                }
+
+
+
+                @using (@Html.BeginForm("OtrOcComment", "Home"))
+                {
+                    <div>
+                        @Html.TextBox("id_comment", @item.id_comments, htmlAttributes: new { @class = "visible_false" })
+                        <input type="image" src="/fonts/dislike.jpg" class="otr_ocenka" title="Поставить отрицательную оценку коментарию"> @item.otr_oc
+                    </div>
+                }
+
+
+                @using (Html.BeginForm("DeleteComments", "Home"))
+                {
+                    @Html.TextBox("id_comment", @item.id_comments, htmlAttributes: new { @class = "visible_false" })
+                    <input type="image" src="/fonts/delete.png" class="delete_zakaz_news" title="Удалить коментарий">
+                }
+               <div align="right"> @using (Html.BeginForm("AddComment", "Home"))
+                {
+                    @Html.TextArea("comment", "", 7, 80, null)
+                    @Html.TextBox("id_news", @item.Id_news, htmlAttributes: new { @class = "visible_false" })
+                   <br>
+                    <input type="submit" value="Оставить коментарий" class="btn btn-warning" />
+                }
+                </div>
+            </td>
+
+        </tr>
+
+
+
        
-     </tr>
-    <tr>
 
-          
-          <td>@item.content
-              <img src="@item.image"  title="Картинка">
-        </td>
+
        
-     </tr>
-    
 
-    
-    <tr>
-
-         
-          <td> @item.pol_ozenk  
-              @using (@Html.BeginForm("PolOcNews", "Home"))
-              {
-                  <div>
-                      @Html.TextBox("id_news", @item.Id_news)
-                      <input type="submit" value="+" />
-                  </div>
-              }
-        
-        
-        
-        
-         @item.otr_ozaenk
-              @using (@Html.BeginForm("OtrOcNews", "Home"))
-              {
-                  <div>
-                      @Html.TextBox("id_news", @item.Id_news)
-                      <input type="submit" value="-" />
-                  </div>
-              }
-        </td>
-      
-       
-     </tr>
- 
-
-<tr>
-          
-           <td>  Коментарии Дата коментария - @item.date_comment  Оставил - @item.users_comment <br>
-           Содержание - @item.comment<br>
-           Положительных оценок - @item.pol_oc
-               @using (@Html.BeginForm("PolOcComment", "Home"))
-               {
-                   <div>
-                       @Html.TextBox("id_comment", @item.id_comments)
-                       <input type="submit" value="+" />
-                   </div>
-               }
-
-
-           Отрицательных оценок -@item.otr_oc
-               @using (@Html.BeginForm("OtrOcComment", "Home"))
-               {
-                   <div>
-                       @Html.TextBox("id_comment", @item.id_comments)
-                       <input type="submit" value="-" />
-                   </div>
-               }
-
-              
-@using (Html.BeginForm("DeleteComments", "Home"))
-               {
-                   @Html.TextBox("id_comment", @item.id_comments)
-                   <input type="submit" value="Удалить" />
-}
-
-           </td>
-     </tr> 
-    
-     <tr>
-      <td>
-          @using (Html.BeginForm("AddComment", "Home"))
-               {
-              @Html.TextArea("comment", "")
-              @Html.TextBox("id_news", @item.Id_news)
-              <input type="submit" value="Оставить коментарий" />
-}
-          </td>
-
-      </tr>
+     
     }
 </table>
 

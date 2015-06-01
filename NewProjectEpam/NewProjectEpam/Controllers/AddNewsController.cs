@@ -12,11 +12,13 @@ namespace NewProjectEpam.Controllers
 Repository repoz =new Repository();
         //
         // GET: /AddNews/
+        [Authorize]
         public ActionResult AddNews()
         {
             return View();
         }
 
+        [Authorize]
       public ActionResult AddMyNews(string name_news, string content, string img, string typess)
         {
             ViewBag.Title = "Добавить новость";

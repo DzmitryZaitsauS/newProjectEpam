@@ -13,18 +13,20 @@
     <div>
         @Html.ValidationSummary(true, "")
         <div>
-            <p>Email: @Html.EditorFor(model => model.Email)</p>
+            <p>Email: 
+            <br>@Html.EditorFor(model => model.Email)</p>
         </div>
 
         <div>
-            <p>Ник: @Html.EditorFor(model => model.UserName)</p>
+            <p>Ник:
+            <br> @Html.EditorFor(model => model.UserName)</p>
         </div>
 
 
 
         <div>
             <div>
-                <input type="submit" value="Сохранить" />
+                <input type="submit" value="Сохранить" class="btn btn-success" />
             </div>
         </div>
     </div>

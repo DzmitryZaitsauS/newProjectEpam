@@ -28,6 +28,14 @@ public ActionResult Index()
         }
 
         [Authorize]
+        public ActionResult Chat()
+        {
+            ViewBag.Message = "This chat.";
+
+            return View();
+        }
+
+        [Authorize]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -65,33 +73,33 @@ public ActionResult Index()
 
             return View();
         }
-
+             [Authorize(Users = "dmitry_zajcew@mail.ru")]
         public ActionResult AddCategories(string typess)
         {
             ViewBag.Title = "Добавление категории";
            repozit.GreateCategories(typess);
            return RedirectToAction("AdminCategor", "Home");
         }
-
+             [Authorize(Users = "dmitry_zajcew@mail.ru")]
         public ActionResult DeleteCategories(string typess)
         {
             ViewBag.Title = "Удаление категории";
             repozit.DeleteCategories(typess);
             return RedirectToAction("AdminCategor", "Home");
         }
-
+             [Authorize(Users = "dmitry_zajcew@mail.ru")]
         public ActionResult DeleteMyNews(int id_news)
         {
             ViewBag.Title = "Удаление новости";
             repozit.DeleteNews(id_news);
             return RedirectToAction("Index", "Home");
         }
-
+             [Authorize(Users = "dmitry_zajcew@mail.ru")]
         public ActionResult UpdateNews(int id_news)
         {
             return View(repozit.UpdateNews(id_news));
         }
-
+        [Authorize]
         public ActionResult AddComment(string comment, int id_news)
         {
             ViewBag.Title = "Добавление коментария";
@@ -99,7 +107,7 @@ public ActionResult Index()
             return RedirectToAction("Index", "Home");
         
         }
-
+             [Authorize(Users = "dmitry_zajcew@mail.ru")]
         public ActionResult DeleteComments(int id_comment )
         {
             ViewBag.Title = "Добавление коментария";
@@ -107,7 +115,7 @@ public ActionResult Index()
             return RedirectToAction("Index", "Home");
 
         }
-
+             [Authorize(Users = "dmitry_zajcew@mail.ru")]
         public ActionResult SaveNews(int id_news, string name_news, string typess, string content, string img)
         {
             ViewBag.Title = "Обновление новости";
@@ -115,6 +123,7 @@ public ActionResult Index()
             return RedirectToAction("Index", "Home");
 
         }
+        [Authorize]
         public ActionResult PolOcNews(int id_news)
         {
             ViewBag.Title = "+ новости";
@@ -122,7 +131,7 @@ public ActionResult Index()
             return RedirectToAction("Index", "Home");
 
         }
-
+        [Authorize]
         public ActionResult OtrOcNews(int id_news)
         {
             ViewBag.Title = "- новости";
@@ -130,7 +139,7 @@ public ActionResult Index()
             return RedirectToAction("Index", "Home");
 
         }
-
+    [Authorize]
         public ActionResult PolOcComment(int id_comment)
         {
             ViewBag.Title = "+ новости";
@@ -138,7 +147,7 @@ public ActionResult Index()
             return RedirectToAction("Index", "Home");
 
         }
-
+        [Authorize]
         public ActionResult OtrOcComment(int id_comment)
         {
             ViewBag.Title = "- новости";

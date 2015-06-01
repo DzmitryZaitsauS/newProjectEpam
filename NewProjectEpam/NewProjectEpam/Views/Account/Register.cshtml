@@ -3,7 +3,7 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Регистрация</h2>
+
 
 
 @using (Html.BeginForm())
@@ -30,7 +30,7 @@
         </div>
 
         <div>
-            Подтвердить пароль
+            <strong class="Mystrong"></strong>Подтвердить пароль
             <div>
                 @Html.EditorFor(model => model.PasswordConfirm)
             </div>
@@ -38,7 +38,8 @@
 
         <div>
             <div>
-                <input type="submit" value="Зарегистрировать" />
+                <br>
+                <input type="submit" value="Зарегистрировать" class="btn btn-primary" />
             </div>
         </div>
     </div>

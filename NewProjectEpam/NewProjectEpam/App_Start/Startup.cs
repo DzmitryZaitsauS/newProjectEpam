@@ -23,6 +23,8 @@ namespace NewProjectEpam.App_Start
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
             });
+
+            app.MapSignalR();
         }
     }
 }

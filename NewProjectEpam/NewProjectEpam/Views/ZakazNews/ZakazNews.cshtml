@@ -1,105 +1,108 @@
 ﻿@model IEnumerable<NewProjectEpam.Models.myTable.TableZakazNews>
 @{
-    ViewBag.Title = "ZakazNews";
-}
-
-<h2>Заказ новостей</h2>
-
-@using (Html.BeginForm("AddZakazNews", "ZakazNews"))
-{
-
-    <div>Предложить новость:</div>
-    <div>
-       
-       Название новости которую вы бы хотели видеть - @Html.TextBox("name_news", "Новости о ...")
-        <input type="submit" value="Предложить" />
-    </div>
-
+    ViewBag.Title = "Предложить новость";
 }
 
 
+<div class="predloj_news">
+    @using (Html.BeginForm("AddZakazNews", "ZakazNews"))
+    {
 
-<table border="1">
+
+        <div>
+
+            <strong> Предложить новость: </strong> Название новости которую вы бы хотели видеть - @Html.TextBox("name_news", "Новости о ...", htmlAttributes: new { @class = "text_box", data_ajax = "true" })
+            <input type="submit" value="Предложить" class="btn btn-success" />
+        </div>
+
+    }
+</div>
+
+
+
+<table class="table table-hover table-condensed features-table">
     <tr>
-        <td colspan="6" align="center">Предложенные новости</td>
+        <td colspan="7" align="center"><h4>Предложенные новости</h4></td>
 
-        
     </tr>
 
     <tr>
-       
-       
-        <td>Имя пользователя</td>
-        <td>E-mail пользователя</td>
-        <td>Название </td>
-        <td> Дата заказа</td>
-        <td> Отрицательных оценок</td>
-        <td> Положительных оценок</td>
-        <td>Номер заказа</td>
-        </tr>
+
+
+        <td class="strong grey">Имя пользователя</td>
+        <td class="strong green">E-mail пользователя</td>
+        <td class="strong grey">Название </td>
+        <td class="strong green"> Дата заказа</td>
+        <td class="strong grey"> Отрицательных оценок</td>
+        <td class="strong green"> Положительных оценок</td>
+        <td class="strong grey"></td>
+    </tr>
     @foreach (var item in Model)
     {
-      
+
         <tr>
-            
-            
-          <td>
 
-              @item.user_name
-              </td>
 
-            <td>
+            <td class="grey">
+
+                @item.user_name
+            </td>
+
+            <td class="green">
                 @item.email
             </td>
-            <td>
+            <td class="grey">
                 @item.name_news
             </td>
-            <td>
-                                @item.date_zakaz
+            <td class="green">
+                @item.date_zakaz
             </td>
-            <td>
-                @item.otr_ozaenk
-               @using (@Html.BeginForm("OtrOcZakaz", "ZakazNews"))
-{
-    <div>
-        @Html.TextBox("id_zakaz", @item.Id_zakaz)
-        <input type="submit" value="-" />
-    </div>
-}
+            <td class="grey">
+
+                @using (@Html.BeginForm("OtrOcZakaz", "ZakazNews"))
+                {
+                    <div>
+                        <input type="image" src="/fonts/dislike.jpg" class="otr_ocenka" title="Поставить отрицательную оценку">
+                        <span class="visible_false"> @Html.TextBox("id_zakaz", @item.Id_zakaz)</span> @item.otr_ozaenk
+                    </div>
+                }
             </td>
-            <td>
-                @item.pol_ozenk
+            <td class="green">
+
                 @using (@Html.BeginForm("PolOzZakaz", "ZakazNews"))
                 {
                     <div>
-                        @Html.TextBox("id_zakaz", @item.Id_zakaz)
-                        <input type="submit" value="+" class="polo_ocenka"  />
+                        <span class="visible_false"> @Html.TextBox("id_zakaz", @item.Id_zakaz)</span>
+
+                        <input type="image" src="/fonts/like.jpg" class="polo_ocenka" title="Поставить положительную оценку"> @item.pol_ozenk
+                    
                     </div>
                 }
 
             </td>
-            <td>
+            <td class="grey">
 
                 @using (Html.BeginForm("DeleteZakaz", "ZakazNews"))
                 {
 
 
                     <div>
-                        @Html.TextBox("id_zakaz", @item.Id_zakaz)
-                        <input type="submit" value="Удалить" />
+                        <span class="visible_false"> @Html.TextBox("id_zakaz", @item.Id_zakaz)</span>
+                        <input type="image" src="/fonts/delete.png" class="delete_zakaz_news" title="Удалить">
+                      
                     </div>
 
                 }
             </td>
-          
-            
-              
 
-              
+
+
+
+
 
         </tr>
     }
-    </table>
+</table>
 
 
 

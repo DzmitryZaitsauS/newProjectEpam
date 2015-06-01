@@ -9,43 +9,51 @@
 @using (Html.BeginForm("AddCategories","Home"))
 {
 
-    <div>Название новой категории:</div>
+    <div><strong class="Mystrong" >Название новой категории:</strong></div>
     <div>
-        @Html.TextBox("typess", "Новости...")
-        <input type="submit" value="Добавить" />
+        @Html.TextBox("typess", "Новости...", htmlAttributes: new { @class = "text_box", data_ajax = "true" })
+        <input type="submit" value="Добавить" class="btn btn-success" />
     </div>
 
 }
-<table>
+<br>
+<table class="table table-hover table-condensed ">
     <tr>
-        <td>Название категоррии новостей</td>
+        <td colspan="2"><strong class="Mystrong">Список категоррий новостей</strong></td>
 
     </tr>
 
-            @foreach (var item in Model)
-            { 
-            <tr>
-             
+    @foreach (var item in Model)
+    {
+        <tr>
 
-               @using (Html.BeginForm("DeleteCategories", "Home"))
-{
 
-<td>
-    <div>
-    
-        @Html.TextBox("typess", @item.Typess)
-                <input type="submit" value="Удалить" />
-    </div>
-    </td>
+            @using (Html.BeginForm("DeleteCategories", "Home"))
+            {
 
-}
-             
-                </tr>
+                <td>
+                    <div>
+
+                        @Html.TextBox("typess", @item.Typess, htmlAttributes: new { @class = "text_box", data_ajax = "true" })
+
+                    </div>
+                </td>
+                <td>
+                    <div>
+
+
+                        <input type="image" src="/fonts/delete.png" class="delete_zakaz_news" title="Удалить">
+                    </div>
+                </td>
+
             }
 
-        
-    
+        </tr>
+    }
 
 
-    </table>
+
+
+
+</table>
 

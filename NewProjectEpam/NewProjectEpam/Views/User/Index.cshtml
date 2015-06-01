@@ -7,59 +7,26 @@
 <h2>Список пользователей</h2>
 
 <table>
-    <tr>
+    @foreach(var item in Model)
+    {     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email-
+            @Html.TextBox("Email", @item.Email)
         </th>
        
         
             <th>
-                @Html.DisplayNameFor(model => model.UserName)
+             UserName-  @Html.TextBox("Email", @item.UserName)
             </th>
-            @*<th>
-                @Html.DisplayNameFor(model => model)
-            </th>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.Position)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartmentId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RoleId)
-        </th>
-        <th></th>
-    </tr>
+           
+          
+              <td >
+                  <ul class ="nav navbar-nav">
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-          
-                <td>
-                    @Html.DisplayFor(modelItem => item.Login)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-            
-            <td>
-                @Html.DisplayFor(modelItem => item.Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Department.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Roles.Name)
-            </td>*@
-          
-                <td>
-                    @Html.ActionLink("Редактировать", "Edit") |
-                    @Html.ActionLink("Удалить", "Delete")
-                </td>
+<li>@Html.ActionLink("Редактировать", "Edit")
+                 <li>     @Html.ActionLink("Удалить", "Delete")
+                     </ul>
+</td>
             
         </tr>
     }

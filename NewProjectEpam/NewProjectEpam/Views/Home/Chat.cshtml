@@ -1,0 +1,48 @@
+﻿@{
+    Layout = null;
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Чат комната!</title>
+</head>
+<body>
+    <div align="right"><ul class="nav navbar-nav"> <li>@Html.ActionLink("Главная", "Index", "Home", null, new { @class = "navbar-brand" })</ul></div>
+   <div align="center"> <h2>Чат-комната</h2></div>
+
+    <table class="table table-hover">
+       <tr> <td><div class="chat">
+            <div id="loginBlock">
+                Введите логин:<br />
+                <input id="txtUserName" type="text" class="text_box" />
+                <input id="btnLogin" type="button" value="Войти" class="btn btn-primary" />
+            </div>
+          
+            <div id="chatBody">
+                <div id="header"></div>
+                <div id="inputForm">
+                    <input type="text" id="message" class="text_box" />
+                    <input type="button" id="sendmessage" value="Отправить" class="btn btn-primary" />
+                </div>
+                <div id="chatroom"></div>
+                <div id="chatusers" align="right">
+                    <p><b>Все пользователи</b></p>
+
+                </div>
+           
+            </div>
+            <input id="hdId" type="hidden" />
+            <input id="username" type="hidden" />
+        </div>
+          </td> </tr>
+</table>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <!--Ссылка на библиотеку SignalR -->
+        <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+        <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
+        <script src="~/signalr/hubs"></script>
+        <script src="~/Scripts/util.js"></script>
+</body>
+</html>

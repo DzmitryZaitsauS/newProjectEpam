@@ -1,12 +1,18 @@
 ﻿
 @{
-    ViewBag.Title = "EditUsers";
+    ViewBag.Title = "Личный кабинет";
 }
 
-            {
-                
-                    @Html.ActionLink("Редактировать", "Edit") |
-                    @Html.ActionLink("Удалить", "Delete")
-                
-             
-    }
+           
+<ul class="nav navbar-nav">
+   
+
+   <li> @Html.ActionLink("Редактировать", "Edit")
+   
+    
+    <li>@Html.ActionLink("Удалить", "Delete")
+        <br>
+</ul>
+
+<br>
+

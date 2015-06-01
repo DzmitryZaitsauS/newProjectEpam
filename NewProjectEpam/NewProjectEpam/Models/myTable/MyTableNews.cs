@@ -28,5 +28,7 @@ namespace NewProjectEpam.Models.myTable
 
         public int pol_oc { get; set; }
         public int otr_oc { get; set; }
+
+        public string name_zakaz_news { get; set; }
     }
 }

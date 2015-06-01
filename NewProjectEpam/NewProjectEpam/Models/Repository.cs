@@ -7,13 +7,15 @@ using System.Web;
 using NewProjectEpam.Models.myTable;
 using System.Configuration;
 using System.Data;
+using System.Net.Mail;
+using System.Text;
 
 namespace NewProjectEpam.Models
 {
     public class Repository: IRepository
     {
 
-        SqlConnection connection = new SqlConnection(@"Data Source=ADMIN-PC\SQLEXPRESS;Initial Catalog=IdentityDb;Integrated Security=True");
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Admin\Desktop\NewRepozitory\NewProjectEpam\NewProjectEpam\App_Data\MyDb.mdf;Integrated Security=True;Connect Timeout=30");
 
         public List<myTable.TableCategories> SelectCategories()
         {
@@ -36,7 +38,7 @@ namespace NewProjectEpam.Models
         public bool GreateCategories(string typess)
         {
             connection.Open();
-            string query = "INSERT INTO [IdentityDb].[dbo].[MyTableCategories]([TYPESS]) VALUES(@Name)";
+            string query = "INSERT INTO [MyTableCategories]([TYPESS]) VALUES(@Name)";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.Add("@Name", SqlDbType.VarChar, 50).Value = typess;
             command.ExecuteNonQuery();
@@ -94,7 +96,7 @@ namespace NewProjectEpam.Models
             int otr_ocenk=0;
 
             connection.Open();
-            string query = "INSERT INTO [IdentityDb].[dbo].[MyTableZakazNews]([user_nam],[email],[name_news],[date_zakaz],[pol_ozenk],[otr_ozaenk]) VALUES(@user_nam, @email, @name, @date, @pol_ozenk, @otr_ocenk)";
+            string query = "INSERT INTO [MyTableZakazNews]([user_nam],[email],[name_news],[date_zakaz],[pol_ozenk],[otr_ozaenk]) VALUES(@user_nam, @email, @name, @date, @pol_ozenk, @otr_ocenk)";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.Add("@user_nam", SqlDbType.VarChar, 50).Value = user_nam;
             command.Parameters.Add("@email", SqlDbType.VarChar, 50).Value = email;
@@ -173,7 +175,7 @@ namespace NewProjectEpam.Models
             int otr_ocenk = 0;
 
             connection.Open();
-            string query = "INSERT INTO [IdentityDb].[dbo].[MyTableAddNews]([user_nam],[name_news],[date_publich],[content],[img],[typess],[pol_ozenk],[otr_ozaenk]) VALUES(@user_nam , @name, @date,@content,@img,@typess, @pol_ozenk, @otr_ocenk)";
+            string query = "INSERT INTO [MyTableAddNews]([user_nam],[name_news],[date_publich],[content],[img],[typess],[pol_ozenk],[otr_ozaenk]) VALUES(@user_nam , @name, @date,@content,@img,@typess, @pol_ozenk, @otr_ocenk)";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.Add("@user_nam", SqlDbType.VarChar, 50).Value = user_nam;
            
@@ -186,6 +188,22 @@ namespace NewProjectEpam.Models
             command.Parameters.Add("@otr_ocenk", SqlDbType.Int).Value = otr_ocenk;
             command.ExecuteNonQuery();
 
+
+             string con = "Select * From  MyTableZakazNews ";
+            SqlCommand com = new SqlCommand(con, connection);
+            
+
+            SqlDataReader reader = com.ExecuteReader();
+
+            while (reader.Read())
+            {
+                TableZakazNews News = new TableZakazNews();
+                string news =News.name_news = (string)reader["name_news"];
+                if(news.Equals(name_news))
+                {
+                    SendMailMessage(name_news, user_nam);
+                }
+            }
             return true;
         }
 
@@ -266,7 +284,7 @@ namespace NewProjectEpam.Models
             int otr_ocenk = 0;
 
             connection.Open();
-            string query = "INSERT INTO [IdentityDb].[dbo].[MyTableComment]([users_comment],[id_news],[date_coments],[comments],[pol_oc],[otr_oc]) VALUES(@users_comment , @id_news, @date_coments,@comments, @pol_ozenk, @otr_ocenk)";
+            string query = "INSERT INTO [MyTableComment]([users_comment],[id_news],[date_coments],[comments],[pol_oc],[otr_oc]) VALUES(@users_comment , @id_news, @date_coments,@comments, @pol_ozenk, @otr_ocenk)";
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.Add("@users_comment", SqlDbType.VarChar, 50).Value = users_comment;
             command.Parameters.Add("@id_news", SqlDbType.Int).Value = id_news;
@@ -540,6 +558,36 @@ namespace NewProjectEpam.Models
             command.ExecuteNonQuery();
 
             return true;
+        }
+
+
+        public bool SendMailMessage(string name_mews, string email)
+        {
+            MailMessage Message = new MailMessage();
+
+Message.Subject = "Запрошенная вами новость добавлена на сайт!";
+
+Message.Body = "Здравствуйте!Хотим сказать что новость"+name_mews+"апрошеная вами  на сайте www.tut.tut.by, успешено добавлена!!! С ув. администрация сайта!";
+
+Message.BodyEncoding = Encoding.GetEncoding("Windows-1254"); // Turkish Character Encoding// кодировка эсли нужно!
+
+Message.From = new System.Net.Mail.MailAddress("dmitry_zajcew@mail.ru");
+
+Message.To.Add(new MailAddress(email));
+
+System.Net.Mail.SmtpClient Smtp = new SmtpClient("127.0.0.1");
+
+Smtp.Host = "smtp.mail.ru"; //например для gmail (smtp.gmail.com), mail.ru(smtp.mail.ru)
+
+Smtp.EnableSsl = true; // включение SSL для gmail нужно!!! для mail.ru не нада!!!
+
+Smtp.Credentials = new System.Net.NetworkCredential("логин", "пароль");
+
+
+Smtp.Send(Message);//отправка
+
+            return true;
+
         }
     }
 }

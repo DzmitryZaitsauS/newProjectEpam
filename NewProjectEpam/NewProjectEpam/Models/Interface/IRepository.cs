@@ -50,5 +50,7 @@ namespace NewProjectEpam.Models.Interface
        bool OtrOcComment(int id_comment);
 
         #endregion
+
+       bool SendMailMessage(string name_mews, string email);
     }
 }

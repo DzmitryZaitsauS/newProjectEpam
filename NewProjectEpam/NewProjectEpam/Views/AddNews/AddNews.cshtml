@@ -12,21 +12,35 @@
     
     <div>
 
-        Название новости  - @Html.TextBox("name_news", "")
-
-       
-
-            Категория -  @Html.TextBox("typess", "")
-            
+    <strong class="Mystrong"> Название новости</strong> <br>
+         @Html.TextBox("name_news", "", htmlAttributes:new {@class="text_box", data_ajax = "true"})
         
+       <br>
+        <br>
+        <strong class="Mystrong">  
+        Категория
+        </strong> <br />
+            @Html.TextBox("typess", "", htmlAttributes: new { @class = "text_box", data_ajax = "true" })
 
-        Содержание  - @Html.TextArea("content", "")
+            <br>
+            <br>
 
-        Url-адресс изображения  - @Html.TextBox("img", "")
+        <strong class="Mystrong">
+            Содержание
+        </strong><br>
+            @Html.TextArea("content", "", 10, 200, null)
+            <br>
+        <br>
+        <strong class="Mystrong">
+            Url-адресс изображения
+        </strong> <br>
+                @Html.TextBox("img", "", htmlAttributes: new { @class = "text_box", data_ajax = "true" })
+                <br>
+        <br>
+        <br>
+                <input type="submit" value="Добавить" class="btn btn-success" />
 
-        <input type="submit" value="Добавить"  />
-
-    </div>
+</div>
 
 }
 

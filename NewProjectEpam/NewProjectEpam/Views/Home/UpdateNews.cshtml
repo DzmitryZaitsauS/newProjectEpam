@@ -12,16 +12,33 @@
     foreach (var item in Model)
     {
      <div>   
-                Название новости @Html.TextBox("name_news", @item.name_news)
-                  Категория @Html.TextBox("typess", @item.typess)
+         <strong class="Mystrong">
+             Название новости
+         </strong><br>
+             @Html.TextBox("name_news", @item.name_news, htmlAttributes: new { @class = "text_box", data_ajax = "true" })
+         <br>
+             <strong class="Mystrong">
+                 Категория
+             </strong><br>
+                 @Html.TextBox("typess", @item.typess, htmlAttributes: new { @class = "text_box", data_ajax = "true" })
+         <br>
 
-           
-               @Html.TextArea("content", @item.content)
-      
-               @Html.TextBox("img", @item.image)
-         @Html.TextBox("id_news", @item.Id_news)
-         <input type="submit" value="Сохранить" />
-      </div>
+                 <strong class="Mystrong">
+                     Содержание
+                 </strong><br>
+                     @Html.TextArea("content", @item.content, 10, 200, null)
+         <br>
+         
+                     <strong class="Mystrong">
+                         URL-изображения 
+                         </strong><br>
+                         @Html.TextBox("img", @item.image, htmlAttributes: new { @class = "text_box", data_ajax = "true" })
+         <br>
+
+                         @Html.TextBox("id_news", @item.Id_news, htmlAttributes: new { @class = "visible_false" })
+         <br>
+         <input type="submit" value="Сохранить" class="btn btn-success" />
+</div>
 
 
      
