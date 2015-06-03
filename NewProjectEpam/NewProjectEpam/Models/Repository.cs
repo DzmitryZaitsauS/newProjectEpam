@@ -14,24 +14,26 @@ namespace NewProjectEpam.Models
 {
     public class Repository: IRepository
     {
-
-        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Admin\Desktop\NewRepozitory\NewProjectEpam\NewProjectEpam\App_Data\MyDb.mdf;Integrated Security=True;Connect Timeout=30");
-
+    
+   
+        SqlConnection connection = new SqlConnection(@"Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\MyDb.mdf;Integrated Security=True;Connect Timeout=30");
+       
         public List<myTable.TableCategories> SelectCategories()
         {
-            connection.Open();
-            string query = "SELECT * FROM MyTableCategories ";
-            SqlCommand command = new SqlCommand(query, connection);
-            //command.Parameters.AddWithValue("@id", ID);
-            SqlDataReader reader = command.ExecuteReader();
-            List<TableCategories> list = new List<TableCategories>();
-           while (reader.Read())
-           {
-               TableCategories typess = new TableCategories();
-               typess.Typess = reader["TYPESS"].ToString();
-               list.Add(typess);
-                           }
-         
+            
+                connection.Open();
+                string query = "SELECT * FROM MyTableCategories ";
+                SqlCommand command = new SqlCommand(query, connection);
+                //command.Parameters.AddWithValue("@id", ID);
+                SqlDataReader reader = command.ExecuteReader();
+                List<TableCategories> list = new List<TableCategories>();
+                while (reader.Read())
+                {
+                    TableCategories typess = new TableCategories();
+                    typess.Typess = reader["TYPESS"].ToString();
+                    list.Add(typess);
+                }
+          
            return list;
         }
 
@@ -127,7 +129,7 @@ namespace NewProjectEpam.Models
 
         public List<MyTableNews> SelectNews()
         {
-            connection.Close();
+            
             connection.Open();
             string query = "Select * From  MyTableAddNews , MyTableComment where dbo.MyTableAddNews.ID_news = dbo.MyTableComment.id_news   ";
             SqlCommand command = new SqlCommand(query, connection);

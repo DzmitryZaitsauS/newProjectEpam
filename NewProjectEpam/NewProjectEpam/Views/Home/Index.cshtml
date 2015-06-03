@@ -19,7 +19,7 @@
         </tr>
 
 
-        <tr id="inp">
+        <tr >
 
             <td>
                 <strong class="Mystrong"> @item.name_news  |  Категория:  @item.typess |  Добавил: @item.user_nam </strong>
@@ -53,7 +53,7 @@
                 {
                     
                         @Html.TextBox("id_news", @item.Id_news, htmlAttributes: new { @class = "visible_false" })
-                        <input type="image" src="/fonts/like.jpg" class="polo_ocenka" title="Поставить положительную оценку новости">@item.pol_ozenk
+                        <input type="image" src="/fonts/like.jpg" class="polo_ocenka" title="Поставить положительную оценку новости" >@Math.Abs(@item.pol_ozenk)
                    
                 }
 
@@ -62,7 +62,7 @@
                 {
                     
                         @Html.TextBox("id_news", @item.Id_news, htmlAttributes: new { @class = "visible_false" })
-                        <input type="image" src="/fonts/dislike.jpg" class="otr_ocenka" title="Поставить отрицательную оценку новости">@item.otr_ozaenk
+                        <input type="image" src="/fonts/dislike.jpg" class="otr_ocenka" title="Поставить отрицательную оценку новости">@Math.Abs(@item.otr_ozaenk)
                     
                 }
 </div>
@@ -75,7 +75,7 @@
                 {
                     <div>
                         @Html.TextBox("id_comment", @item.id_comments, htmlAttributes: new { @class = "visible_false" })
-                        <input type="image" src="/fonts/like.jpg" class="polo_ocenka" title="Поставить положительную оценку коментарию">@item.pol_oc
+                        <input type="image" src="/fonts/like.jpg" class="polo_ocenka" title="Поставить положительную оценку коментарию">@Math.Abs(@item.pol_oc)
                     </div>
                 }
 
@@ -85,7 +85,7 @@
                 {
                     <div>
                         @Html.TextBox("id_comment", @item.id_comments, htmlAttributes: new { @class = "visible_false" })
-                        <input type="image" src="/fonts/dislike.jpg" class="otr_ocenka" title="Поставить отрицательную оценку коментарию"> @item.otr_oc
+                        <input type="image" src="/fonts/dislike.jpg" class="otr_ocenka" title="Поставить отрицательную оценку коментарию"> @Math.Abs(@item.otr_oc)
                     </div>
                 }
 

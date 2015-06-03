@@ -63,7 +63,7 @@
                 {
                     <div>
                         <input type="image" src="/fonts/dislike.jpg" class="otr_ocenka" title="Поставить отрицательную оценку">
-                        <span class="visible_false"> @Html.TextBox("id_zakaz", @item.Id_zakaz)</span> @item.otr_ozaenk
+                        <span class="visible_false"> @Html.TextBox("id_zakaz", @item.Id_zakaz)</span> @Math.Abs(@item.otr_ozaenk)
                     </div>
                 }
             </td>
@@ -74,7 +74,7 @@
                     <div>
                         <span class="visible_false"> @Html.TextBox("id_zakaz", @item.Id_zakaz)</span>
 
-                        <input type="image" src="/fonts/like.jpg" class="polo_ocenka" title="Поставить положительную оценку"> @item.pol_ozenk
+                        <input type="image" src="/fonts/like.jpg" class="polo_ocenka" title="Поставить положительную оценку"> @Math.Abs(@item.pol_ozenk)
                     
                     </div>
                 }
